@@ -1,16 +1,21 @@
-def mask_account_card(string: str) -> list:
-    """Функция выделяет цифры и буквы из строки"""
-    new_string = 0
-    for i in range(len(string)):
-        if string[i].isdigit():
-            new_string = i
-            break
+from masks import get_mask_account, get_card_mask_number
 
-    account = []
-    account.append(string[:new_string].strip())
-    account.append(string[new_string:].strip())
 
-    return account
+def mask_account_card(string: str) -> str:
+    """Функция маскирует номер счета и карты"""
+    text = ""
+    number = ""
+    number_count = 0
+    for el in string:
+        if el.isalpha():
+            text += el
+        elif el.isdigit():
+            number += el
+            number_count += 1
+    if number_count > 16:
+        return f"{text} {get_mask_account(number)}"
+    else:
+        return f"{text} {get_card_mask_number(number)}"
 
 
 def get_date(date: str) -> str:
