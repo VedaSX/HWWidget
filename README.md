@@ -7,7 +7,7 @@
 
 1. Клонируйте репозитории:
 ```
- https://github.com/VedaSX/HWWidget.git
+git clone https://github.com/VedaSX/HWWidget.git
 ```
 2. Установите зависимости:
 ```
