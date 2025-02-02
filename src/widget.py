@@ -15,7 +15,6 @@ def mask_account_card(string: str) -> str:
         return f"{string[:-16]}{get_card_mask_number(number)}"
 
 
-
 def get_date(date: str) -> str:
     """Функция форматирует дату"""
     if date.count("-") == 2 and "T" in date:

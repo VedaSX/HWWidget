@@ -1,7 +1,7 @@
 def get_card_mask_number(number_card: str) -> str:
     """Выводим скрытый номер карты"""
     mask_card = number_card[:6] + (len(number_card[6:-4]) * "*") + number_card[-4:]
-    mask_split_card = " ".join(mask_card[i * 4 : (i + 1) * 4] for i in range(4))
+    mask_split_card = " ".join(mask_card[i * 4: (i + 1) * 4] for i in range(4))
 
     return mask_split_card
 
