@@ -3,19 +3,16 @@ from src.masks import get_card_mask_number, get_mask_account
 
 def mask_account_card(string: str) -> str:
     """Функция маскирует номер счета и карты"""
-    text = ""
     number = ""
     number_count = 0
     for el in string:
-        if el.isalpha():
-            text += el
-        elif el.isdigit():
+        if el.isdigit():
             number += el
             number_count += 1
     if number_count > 16:
-        return f"{text} {get_mask_account(number)}"
+        return f"{string[:-20]}{get_mask_account(number)}"
     else:
-        return f"{text} {get_card_mask_number(number)}"
+        return f"{string[:-16]}{get_card_mask_number(number)}"
 
 
 def get_date(date: str) -> str:
