@@ -3,23 +3,24 @@ from src.masks import get_card_mask_number, get_mask_account
 
 def mask_account_card(string: str) -> str:
     """Функция маскирует номер счета и карты"""
-    number = ""
-    number_count = 0
-    for el in string:
-        if el.isdigit():
-            number += el
-            number_count += 1
-    if number_count > 16:
-        return f"{string[:-20]}{get_mask_account(number)}"
+    new_string = string.split(" ")
+    number = new_string[-1]
+    if len(number) == 20:
+        new_string_mask = get_mask_account(number)
+        return f"{" ".join(new_string[:-1])} {new_string_mask}"
+    elif len(number) == 16:
+        new_string_mask = get_card_mask_number(number)
+        return f"{" ".join(new_string[:-1])} {new_string_mask}"
     else:
-        return f"{string[:-16]}{get_card_mask_number(number)}"
+        return f"{"Введите корректный номер счета или карты!"}"
 
 
 def get_date(date: str) -> str:
     """Функция форматирует дату"""
     if date.count("-") == 2 and "T" in date:
         date_sep = (date[: date.index("T")]).split("-")
-
+    else:
+        return f"{"Неверный формат даты"}"
     date_formatted = []
 
     for date_el in reversed(date_sep):
