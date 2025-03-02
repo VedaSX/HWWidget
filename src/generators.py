@@ -7,7 +7,8 @@ def filter_by_currency(transactions: list[dict], currency: str = "USD") -> Any:
     if len(transactions) > 0:
         filtered_transaction: Any = filter(
             lambda transaction_list: transaction_list.get("operationAmount").get("currency").get("code") == currency,
-            transactions)
+            transactions,
+        )
         return filtered_transaction
     else:
         return "Пустой Список!"
@@ -16,10 +17,10 @@ def filter_by_currency(transactions: list[dict], currency: str = "USD") -> Any:
 def transaction_descriptions(transactions: list[dict]) -> Generator[Dict, None, None]:
     """Возвращает описание каждой транзакции по очереди."""
     for transaction in transactions:
-        yield transaction['description']
+        yield transaction["description"]
 
 
 def card_number_generator(start: int, end: int) -> Generator[str, None, None]:
-    """Генерирует номера банковских карт в заданном диапазоне. """
+    """Генерирует номера банковских карт в заданном диапазоне."""
     for number in range(start, end + 1):
         yield f"{number:016}"
